@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Official Glasses Cleaning Cloth Requisition Form</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f0ebe3;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .form-container {
+            background: #fffdf8;
+            max-width: 680px;
+            width: 100%;
+            border: 3px solid #1a1a2e;
+            border-radius: 2px;
+            padding: 0;
+            box-shadow: 8px 8px 0 #1a1a2e;
+            position: relative;
+        }
+
+        .header {
+            background: #1a1a2e;
+            color: #f0ebe3;
+            padding: 32px 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 12px solid transparent;
+            border-right: 12px solid transparent;
+            border-top: 12px solid #1a1a2e;
+        }
+
+        .seal {
+            font-size: 48px;
+            margin-bottom: 8px;
+        }
+
+        .header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .header .subtitle {
+            font-size: 11px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            opacity: 0.7;
+        }
+
+        .classification {
+            background: #c0392b;
+            color: white;
+            text-align: center;
+            padding: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .body {
+            padding: 36px 40px;
+        }
+
+        .notice {
+            background: #fef9e7;
+            border: 1px solid #f0c040;
+            border-left: 4px solid #f0c040;
+            padding: 14px 18px;
+            margin-bottom: 28px;
+            font-size: 12px;
+            line-height: 1.6;
+            color: #5a4e2f;
+        }
+
+        .notice strong {
+            display: block;
+            margin-bottom: 4px;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #856404;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        label {
+            display: block;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #1a1a2e;
+            margin-bottom: 8px;
+        }
+
+        label .req {
+            color: #c0392b;
+            font-size: 14px;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #d5d0c8;
+            border-radius: 2px;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            background: #fafaf7;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #1a1a2e;
+            box-shadow: 3px 3px 0 #1a1a2e;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .cloth-count {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .cloth-count input {
+            width: 100px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .cloth-count .limit {
+            font-size: 12px;
+            color: #888;
+        }
+
+        .severity {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .severity label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 14px;
+            border: 2px solid #d5d0c8;
+            border-radius: 2px;
+            cursor: pointer;
+            font-size: 12px;
+            text-transform: none;
+            letter-spacing: 0;
+            font-weight: 500;
+            transition: all 0.15s;
+        }
+
+        .severity label:hover {
+            border-color: #1a1a2e;
+            background: #f5f3ef;
+        }
+
+        .severity input[type="radio"] {
+            width: auto;
+            accent-color: #1a1a2e;
+        }
+
+        .severity input[type="radio"]:checked + span {
+            font-weight: 700;
+        }
+
+        .divider {
+            border: none;
+            border-top: 1px dashed #d5d0c8;
+            margin: 28px 0;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 16px;
+            color: #1a1a2e;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #1a1a2e;
+        }
+
+        .compensation-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .compensation-grid label {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            padding: 12px 14px;
+            border: 2px solid #d5d0c8;
+            border-radius: 2px;
+            cursor: pointer;
+            font-size: 12px;
+            text-transform: none;
+            letter-spacing: 0;
+            font-weight: 500;
+            transition: all 0.15s;
+        }
+
+        .compensation-grid label:hover {
+            border-color: #1a1a2e;
+            background: #f5f3ef;
+        }
+
+        .compensation-grid input[type="checkbox"] {
+            width: auto;
+            margin-top: 1px;
+            accent-color: #1a1a2e;
+        }
+
+        .submit-section {
+            margin-top: 32px;
+            text-align: center;
+        }
+
+        .submit-btn {
+            background: #1a1a2e;
+            color: #f0ebe3;
+            border: none;
+            padding: 16px 48px;
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            cursor: pointer;
+            border-radius: 2px;
+            box-shadow: 4px 4px 0 #888;
+            transition: all 0.15s;
+        }
+
+        .submit-btn:hover {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0 #888;
+        }
+
+        .submit-btn:active {
+            transform: translate(4px, 4px);
+            box-shadow: 0 0 0 #888;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px 40px;
+            font-size: 10px;
+            color: #aaa;
+            border-top: 1px solid #e8e4dc;
+            line-height: 1.6;
+        }
+
+        .form-number {
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            font-size: 10px;
+            opacity: 0.5;
+            font-family: monospace;
+        }
+
+        /* Success modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(26, 26, 46, 0.85);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal {
+            background: #fffdf8;
+            border: 3px solid #1a1a2e;
+            box-shadow: 8px 8px 0 rgba(0,0,0,0.3);
+            max-width: 480px;
+            width: 90%;
+            padding: 40px;
+            text-align: center;
+            animation: modalPop 0.3s ease-out;
+        }
+
+        @keyframes modalPop {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .modal .stamp {
+            font-size: 64px;
+            margin-bottom: 16px;
+        }
+
+        .modal h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            margin-bottom: 12px;
+            color: #1a1a2e;
+        }
+
+        .modal p {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 8px;
+        }
+
+        .modal .ref-number {
+            font-family: monospace;
+            background: #f0ebe3;
+            padding: 8px 16px;
+            display: inline-block;
+            margin: 16px 0;
+            font-size: 13px;
+            border: 1px solid #d5d0c8;
+        }
+
+        .modal button {
+            background: #1a1a2e;
+            color: #f0ebe3;
+            border: none;
+            padding: 12px 32px;
+            font-family: 'Inter', sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            margin-top: 16px;
+        }
+
+        .inventory-meter {
+            margin-top: 8px;
+        }
+
+        .meter-bar {
+            height: 8px;
+            background: #e8e4dc;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 4px;
+        }
+
+        .meter-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #c0392b, #e74c3c);
+            width: 12%;
+            border-radius: 4px;
+            transition: width 0.5s;
+        }
+
+        .meter-label {
+            font-size: 10px;
+            color: #c0392b;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <div class="header">
+            <div class="form-number">FORM GCC-001</div>
+            <div class="seal">&#128083;</div>
+            <h1>Glasses Cleaning Cloth<br>Requisition Authority</h1>
+            <div class="subtitle">Office of Textile Resource Allocation</div>
+        </div>
+        <div class="classification">RESOURCE SCARCITY LEVEL: CRITICAL</div>
+        <div class="body">
+            <div class="notice">
+                <strong>&#9888;&#65039; Important Notice</strong>
+                Due to unprecedented demand and limited supply, all requests for glasses cleaning cloths are subject to rigorous review. The Bureau reserves the right to deny, reduce, or negotiate all requisitions. Frivolous requests will be noted in your permanent record.
+            </div>
+
+            <div class="form-group">
+                <label>Full Legal Name of Requestor <span class="req">*</span></label>
+                <input type="text" id="name" placeholder="e.g., Cyn Richard Garfield" required>
+            </div>
+
+            <div class="form-group">
+                <label>Number of Cloths Requested <span class="req">*</span></label>
+                <div class="cloth-count">
+                    <input type="number" id="clothCount" min="1" max="3" value="1">
+                    <div>
+                        <div class="limit">Maximum: 3 per quarter</div>
+                        <div class="inventory-meter">
+                            <div class="meter-bar">
+                                <div class="meter-fill"></div>
+                            </div>
+                            <div class="meter-label">Current inventory: CRITICALLY LOW (est. several dozen)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="divider">
+
+            <div class="section-title">Justification for Donation of Scarce Cloths</div>
+
+            <div class="form-group">
+                <label>Urgency Level <span class="req">*</span></label>
+                <div class="severity">
+                    <label>
+                        <input type="radio" name="urgency" value="low">
+                        <span>&#128064; Mildly Smudgy</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="urgency" value="medium">
+                        <span>&#128566; Noticeably Blurry</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="urgency" value="high">
+                        <span>&#128561; Can't See Faces</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="urgency" value="critical">
+                        <span>&#129397; Legally Blind</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Written Justification <span class="req">*</span></label>
+                <textarea id="justification" placeholder="Please provide a compelling case for why you deserve these precious cloths. Note: 'I asked nicely' is not sufficient justification."></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Current Method of Lens Cleaning (if any)</label>
+                <select id="currentMethod">
+                    <option value="">-- Select --</option>
+                    <option value="shirt">T-shirt hem (barbaric)</option>
+                    <option value="breath">Breathing on them and using sleeve</option>
+                    <option value="paper">Paper towel (you monster)</option>
+                    <option value="nothing">I simply do not clean them</option>
+                    <option value="stolen">Using someone else's cloth (theft)</option>
+                    <option value="none">I have no method, I suffer</option>
+                </select>
+            </div>
+
+            <hr class="divider">
+
+            <div class="section-title">Compensation Offered</div>
+
+            <div class="form-group">
+                <label>Compensation Offered</label>
+                <textarea id="compensation" placeholder="Describe any additional offerings that may expedite your request..." rows="3"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" id="acknowledge" style="width: auto; margin-right: 8px; accent-color: #1a1a2e;">
+                    I acknowledge that glasses cleaning cloths are a finite and precious resource, and I solemnly swear to treat any allocated cloth with the utmost care and reverence. <span class="req">*</span>
+                </label>
+            </div>
+
+            <div class="submit-section">
+                <button class="submit-btn" onclick="submitForm()">Submit Requisition</button>
+            </div>
+        </div>
+
+        <div class="footer">
+            Glasses Cleaning Cloth Requisition Authority &bull; Est. 2026 &bull; A Division of the Bureau of Household Textile Management<br>
+            Form GCC-001 Rev. 1 &bull; All requisitions are final and binding &bull; Processing time: 3-5 business hugs
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modal">
+        <div class="modal">
+            <div class="stamp">&#128220;</div>
+            <h2>Requisition Submitted</h2>
+            <p>Your request has been received by the Bureau of Household Textile Management and is now under review.</p>
+            <div class="ref-number" id="refNumber">REF: GCC-2026-0001</div>
+            <p>Estimated review time: <strong>3-5 business hugs</strong></p>
+            <p style="font-size: 11px; color: #999;">The Cloth Allocation Board will convene at its earliest convenience (probably after dinner).</p>
+            <button onclick="closeModal()">Understood</button>
+        </div>
+    </div>
+
+    <script>
+        function submitForm() {
+            const name = document.getElementById('name').value.trim();
+            const justification = document.getElementById('justification').value.trim();
+            const acknowledged = document.getElementById('acknowledge').checked;
+
+            if (!name) {
+                alert('Please provide your full legal name. Anonymous cloth requests are not accepted.');
+                return;
+            }
+            if (!justification) {
+                alert('A written justification is required. The Bureau cannot allocate scarce resources without due cause.');
+                return;
+            }
+            if (!acknowledged) {
+                alert('You must acknowledge the sacred responsibility of cloth stewardship before proceeding.');
+                return;
+            }
+
+            const ref = 'GCC-2026-' + String(Math.floor(Math.random() * 9999)).padStart(4, '0');
+            document.getElementById('refNumber').textContent = 'REF: ' + ref;
+            document.getElementById('modal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('modal').classList.remove('active');
+        }
+
+        document.getElementById('modal').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+    </script>
+</body>
+</html>
