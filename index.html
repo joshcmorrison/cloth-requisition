@@ -530,7 +530,12 @@
     <script>
         function submitForm() {
             const name = document.getElementById('name').value.trim();
+            const clothCount = document.getElementById('clothCount').value;
+            const urgency = document.querySelector('input[name="urgency"]:checked');
             const justification = document.getElementById('justification').value.trim();
+            const currentMethod = document.getElementById('currentMethod');
+            const methodText = currentMethod.options[currentMethod.selectedIndex].text;
+            const compensation = document.getElementById('compensation').value.trim();
             const acknowledged = document.getElementById('acknowledge').checked;
 
             if (!name) {
@@ -546,9 +551,42 @@
                 return;
             }
 
+            const btn = document.querySelector('.submit-btn');
+            btn.textContent = 'TRANSMITTING...';
+            btn.disabled = true;
+
             const ref = 'GCC-2026-' + String(Math.floor(Math.random() * 9999)).padStart(4, '0');
-            document.getElementById('refNumber').textContent = 'REF: ' + ref;
-            document.getElementById('modal').classList.add('active');
+
+            const data = {
+                _subject: 'New Cloth Requisition from ' + name + ' [' + ref + ']',
+                'Requestor Name': name,
+                'Cloths Requested': clothCount,
+                'Urgency Level': urgency ? urgency.value : 'Not specified',
+                'Written Justification': justification,
+                'Current Cleaning Method': currentMethod.value ? methodText : 'Not specified',
+                'Compensation Offered': compensation || 'None offered',
+                'Reference Number': ref,
+                _template: 'table'
+            };
+
+            fetch('https://formsubmit.co/ajax/joshcmorrison@gmail.com', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                body: JSON.stringify(data)
+            })
+            .then(function(response) { return response.json(); })
+            .then(function() {
+                document.getElementById('refNumber').textContent = 'REF: ' + ref;
+                document.getElementById('modal').classList.add('active');
+                btn.textContent = 'SUBMIT REQUISITION';
+                btn.disabled = false;
+            })
+            .catch(function() {
+                document.getElementById('refNumber').textContent = 'REF: ' + ref;
+                document.getElementById('modal').classList.add('active');
+                btn.textContent = 'SUBMIT REQUISITION';
+                btn.disabled = false;
+            });
         }
 
         function closeModal() {
